@@ -1,10 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Laurie Website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Background Website 0</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            transition: background-image 0.5s ease-in-out; /* Smooth transition */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .top-menu {
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .top-menu a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .top-menu a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+    </style>
 </head>
 <body>
-    <h1>OM TAT SAT</h1>
-    <p>This is my first website on GitHub Pages.</p>
+
+    <div class="top-menu">
+        <a href="#" data-bg="blackthorne1.jpg">Image 1</a>
+        <a href="#" data-bg="image2.jpg">Image 2</a>
+        <a href="#" data-bg="image3.jpg">Image 3</a>
+    </div>
+
+    <script>
+        const menuLinks = document.querySelectorAll('.top-menu a');
+        const body = document.body;
+
+        menuLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent default link behavior
+                const bgImage = this.getAttribute('data-bg');
+                body.style.backgroundImage = `url('${bgImage}')`;
+            });
+        });
+
+        //Set initial background image.
+        body.style.backgroundImage = `url('image1.jpg')`;
+
+    </script>
 </body>
 </html>
