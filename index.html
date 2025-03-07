@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrollable Background Website</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            transition: background-image 0.5s ease-in-out;
+            background-repeat: no-repeat;
+            background-attachment: scroll; /*Important line for scrollability*/
+            overflow: auto; /* Enable scrollbars when needed */
+        }
+
+        .top-menu {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px 0;
+            text-align: center;
+            position: fixed; /* Keep menu at the top */
+            width: 100%; /* Menu spans the entire width */
+            z-index: 1000; /* Ensure menu is above the background */
+        }
+
+        .top-menu a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .top-menu a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        #content {
+            min-height: 200vh; /* Make content taller than viewport to trigger scrolling */
+            width: 100%;
+            padding-top: 50px; /* Leave space for the fixed menu */
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="top-menu">
+        <a href="#" data-bg="blackthorne1.jpg">Image 1</a>
+        <a href="#" data-bg="sunSeaKilberry.png">Image 2</a>
+        <a href="#" data-bg="image3.jpg">Image 3</a>
+    </div>
+
+    <div id="content">
+        </div>
+
+    <script>
+        const menuLinks = document.querySelectorAll('.top-menu a');
+        const body = document.body;
+
+        menuLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                const bgImage = this.getAttribute('data-bg');
+                body.style.backgroundImage = `url('${bgImage}')`;
+            });
+        });
+
+        body.style.backgroundImage = `url('image1.jpg')`; //initial image.
+
+    </script>
+</body>
+</html>
